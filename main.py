@@ -1,6 +1,7 @@
 # 100 Days of Code: The Complete Python Pro Bootcamp by Dr. Angela Yu
 # Day 25 - Intermediate - Working with CSV Data and the Pandas Library
 # Project - States Guessing Game
+# Day 16 - challenge - replaces several lines of code with a list comprehension method on 2024-11-20
 
 import pandas
 import turtle
@@ -28,10 +29,14 @@ while keep_playing:
     if answer_state == "Exit":
         # Create a .scv file with all the states that have not been guessed
         states_list = states_data.state.to_list()
-        missing_states = []
-        for state in states_list:
-            if state not in correct_states:
-                missing_states.append(state)
+        # new_list = [new_item for item in list if test]
+        missing_states = [state for state in states_list if state not in correct_states] # List comprehension - added on 2024-11-20, day 26 challenge
+        ## Below code block was replaced by above line on 2024-11-20
+        # missing_states = []
+        # for state in states_list:
+        #     if state not in correct_states:
+        #         missing_states.append(state)
+
         # Convert states_not_guessed list to Pandas data frame and save it as CSV file
         missing_states_df = pandas.DataFrame(missing_states)
         missing_states_df.to_csv("missing_states.csv", index=False)
